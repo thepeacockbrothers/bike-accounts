@@ -1,0 +1,6 @@
+.DS_Store
+# Never commit real bank statements or Coconut exports (the made-up ones in app/samples are fine)
+*_Coconut_*.csv
+*.csv
+!app/samples/*.csv
+.github/

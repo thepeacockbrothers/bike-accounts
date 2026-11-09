@@ -1,0 +1,237 @@
+<title>Bike Accounts Setup</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap">
+<style>
+  /* Same workshop palette as the app: bench grey, tool blue, tag yellow for warnings. One readable column. */
+  :root {
+    --bench: #eef1f4;
+    --surface: #ffffff;
+    --ink: #14202b;
+    --ink-soft: #586572;
+    --rule: #dde2e8;
+    --blue: #1f4fd8;
+    --on-blue: #ffffff;
+    --tag: #ffc928;
+    --on-tag: #14202b;
+    --code-bg: #14202b;
+    --code-fg: #e6edf3;
+    --font: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bench: #0e1620; --surface: #17212c; --ink: #eef2f6; --ink-soft: #9aa7b4; --rule: #263340;
+      --blue: #6e93ff; --on-blue: #0e1620; --code-bg: #0a1018; --code-fg: #e6edf3; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bench: #0e1620; --surface: #17212c; --ink: #eef2f6; --ink-soft: #9aa7b4; --rule: #263340;
+    --blue: #6e93ff; --on-blue: #0e1620; --code-bg: #0a1018; --code-fg: #e6edf3; color-scheme: dark;
+  }
+
+  body { background: var(--bench); color: var(--ink); font-family: var(--font); font-size: 18px; line-height: 1.55; }
+  .page { max-width: 680px; margin: 0 auto; padding-block: 32px 64px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+  h1 { font-stretch: 125%; font-weight: 800; font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.05; letter-spacing: -0.015em; margin: 0 0 12px; text-wrap: balance; }
+  .lede { font-size: 1.1rem; margin: 0 0 8px; }
+  .time { color: var(--ink-soft); margin: 0 0 28px; }
+
+  .ask { background: var(--surface); border-radius: 14px; padding: 16px 18px; margin: 0 0 32px; }
+  .ask h2 { font-size: 1rem; margin: 0 0 6px; }
+  .ask p { margin: 0; }
+
+  ol.steps { list-style: none; counter-reset: step; margin: 0; padding: 0; display: grid; gap: 28px; }
+  ol.steps > li { counter-increment: step; display: grid; grid-template-columns: 2.4rem 1fr; gap: 0 14px; }
+  ol.steps > li::before { content: counter(step); font-stretch: 125%; font-weight: 800; font-size: 1.6rem; line-height: 1.2; color: var(--blue); }
+  .step { min-width: 0; }
+  .step h2 { font-size: 1.2rem; font-weight: 700; margin: 0 0 6px; text-wrap: balance; }
+  .step p { margin: 0 0 10px; }
+  .step ul { margin: 0 0 10px; padding-left: 1.2rem; }
+  .step li { margin-bottom: 4px; }
+
+  .ui { font-weight: 700; white-space: nowrap; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 0 6px; }
+  .url { font-family: var(--mono); font-size: 0.9em; overflow-wrap: anywhere; }
+  a { color: var(--blue); }
+
+  .note { border-left: 4px solid var(--tag); padding: 2px 0 2px 12px; margin: 0 0 10px; }
+  .note.quiet { border-color: var(--rule); color: var(--ink-soft); }
+
+  .code { position: relative; margin: 6px 0 10px; }
+  .code pre { background: var(--code-bg); color: var(--code-fg); font-family: var(--mono); font-size: 0.78rem; line-height: 1.5;
+    border-radius: 12px; padding: 52px 16px 16px; margin: 0; overflow-x: auto; max-height: 340px; }
+  .copy { position: absolute; top: 10px; right: 10px; border: none; border-radius: 9px; padding: 8px 14px; font: inherit; font-size: 0.9rem; font-weight: 700;
+    background: var(--blue); color: var(--on-blue); cursor: pointer; }
+  .copy:focus-visible, a:focus-visible { outline: 3px solid var(--tag); outline-offset: 2px; }
+
+  .send { display: grid; gap: 8px; background: var(--surface); border-radius: 14px; padding: 14px 16px; margin: 0 0 10px; }
+  .send div { display: grid; gap: 2px; }
+  .send b { font-size: 0.95rem; }
+  .send span { color: var(--ink-soft); font-size: 0.9rem; }
+
+  .never { background: var(--tag); color: var(--on-tag); border-radius: 14px; padding: 14px 16px; margin: 0 0 10px; }
+  .never b { display: block; margin-bottom: 4px; }
+  .never ul { margin: 0; padding-left: 1.2rem; }
+
+  footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--rule); color: var(--ink-soft); font-size: 0.95rem; }
+  footer h2 { font-size: 1rem; color: var(--ink); margin: 0 0 6px; }
+  footer p { margin: 0 0 12px; }
+</style>
+
+<div class="page">
+  <h1>Setting up your accounts app</h1>
+  <p class="lede">This sets up the free online storage that keeps your phone and computer in step. You only do it once.</p>
+  <p class="time">About 15 minutes. Use a computer rather than your phone.</p>
+
+  <div class="ask">
+    <h2>At the end</h2>
+    <p>You'll send Ryan two bits of text (step 7). He puts them in the app, then sends you the link to open it.</p>
+  </div>
+
+  <ol class="steps">
+    <li>
+      <div class="step">
+        <h2>Make a Supabase account</h2>
+        <p>Go to <a href="https://supabase.com" target="_blank" rel="noopener"><span class="url">supabase.com</span></a> and click <span class="ui">Start your project</span>.</p>
+        <p>Sign up with your email and a password, then click the link in the email they send you.</p>
+        <p class="note quiet">It's free. It won't ask for card details for the free plan.</p>
+      </div>
+    </li>
+
+    <li>
+      <div class="step">
+        <h2>Create a project</h2>
+        <p>Click <span class="ui">New project</span> and fill in:</p>
+        <ul>
+          <li><b>Name:</b> Bike Accounts</li>
+          <li><b>Database password:</b> click <span class="ui">Generate a password</span>, then copy it somewhere safe. You won't need it day to day, and you should never send it to anyone.</li>
+          <li><b>Region:</b> London</li>
+          <li><b>Plan:</b> Free</li>
+        </ul>
+        <p>Click <span class="ui">Create new project</span> and wait a couple of minutes while it sets up.</p>
+      </div>
+    </li>
+
+    <li>
+      <div class="step">
+        <h2>Add the tables that hold your payments</h2>
+        <p>In the menu on the left, open <span class="ui">SQL Editor</span>. Click the button below to copy the code, paste it into the big box, then click <span class="ui">Run</span>.</p>
+        <div class="code">
+          <button class="copy" id="copy-sql" type="button">Copy code</button>
+<pre id="sql">create table if not exists public.transactions (
+  user_id     uuid not null default auth.uid() references auth.users on delete cascade,
+  id          text not null,
+  date        date not null,
+  description text not null,
+  amount      numeric(12, 2) not null,
+  category    text,
+  source      text,
+  import_id   text not null,
+  duplicate_of text,
+  updated_at  timestamptz not null default now(),
+  primary key (user_id, id)
+);
+alter table public.transactions enable row level security;
+drop policy if exists "own transactions" on public.transactions;
+create policy "own transactions" on public.transactions
+  for all to authenticated
+  using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
+create index if not exists transactions_user_date on public.transactions (user_id, date);
+
+create table if not exists public.rules (
+  user_id  uuid not null default auth.uid() references auth.users on delete cascade,
+  pattern  text not null,
+  category text not null,
+  primary key (user_id, pattern)
+);
+alter table public.rules enable row level security;
+drop policy if exists "own rules" on public.rules;
+create policy "own rules" on public.rules
+  for all to authenticated
+  using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);</pre>
+        </div>
+        <p>It should say <b>Success. No rows returned</b>. That's right: there's nothing in it yet.</p>
+        <p class="note quiet">It's fine to run this code again if you're not sure it worked. It won't make copies or delete anything.</p>
+        <p class="note">Supabase may warn that the query <b>creates tables without row level security</b>. Supabase shows this check when code creates new tables. This code switches row level security on for each table straight after making it (the <b>enable row level security</b> lines), so it's safe to go ahead. If it offers to enable row level security (RLS) for you, accept. Either way, go ahead and run it.</p>
+        <p><b>Then check it worked:</b> open <span class="ui">Table Editor</span> in the left menu. You should see <b>transactions</b> and <b>rules</b>, and neither should have a red <span class="ui">Unrestricted</span> label. If one does, stop and send Ryan a screenshot.</p>
+      </div>
+    </li>
+
+    <li>
+      <div class="step">
+        <h2>Create your app login</h2>
+        <p>In the left menu, open <span class="ui">Authentication</span>, then <span class="ui">Users</span>. Click <span class="ui">Add user</span>, then <span class="ui">Create new user</span>.</p>
+        <ul>
+          <li>Enter the email and password you want to use to sign in to the app. This can be different from your Supabase password.</li>
+          <li>Tick <span class="ui">Auto Confirm User</span>.</li>
+        </ul>
+        <p>Click <span class="ui">Create user</span>. This is the login you'll type into the app on your phone.</p>
+      </div>
+    </li>
+
+    <li>
+      <div class="step">
+        <h2>Stop anyone else signing up</h2>
+        <p>Still in <span class="ui">Authentication</span>, open <span class="ui">Sign In / Providers</span> and turn <b>off</b> <span class="ui">Allow new users to sign up</span>. Click <span class="ui">Save</span>.</p>
+        <p class="note">This matters: it means only the login you just made can get in.</p>
+      </div>
+    </li>
+
+    <li>
+      <div class="step">
+        <h2>Find the two bits Ryan needs</h2>
+        <p>Click the cog, <span class="ui">Project Settings</span>, at the bottom of the left menu.</p>
+        <ul>
+          <li><b>Project URL:</b> under <span class="ui">Data API</span>. It looks like <span class="url">https://abcdefgh.supabase.co</span></li>
+          <li><b>Publishable key:</b> under <span class="ui">API Keys</span>. It starts <span class="url">sb_publishable_</span>. On some screens it's called the <span class="ui">anon public</span> key instead.</li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <div class="step">
+        <h2>Send them to Ryan</h2>
+        <div class="send">
+          <div><b>Project URL</b><span>https://….supabase.co</span></div>
+          <div><b>Publishable key</b><span>sb_publishable_… (or the "anon public" key)</span></div>
+        </div>
+        <p>These two are safe to send by text or email. On their own they can't get at your payments without your app login.</p>
+        <div class="never">
+          <b>Never send anyone</b>
+          <ul>
+            <li>the <b>secret</b> key (also called <b>service_role</b>)</li>
+            <li>your database password</li>
+            <li>your app login password</li>
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ol>
+
+  <footer>
+    <h2>Good to know</h2>
+    <p>On the free plan, Supabase pauses a project if nothing uses it for about a week. Your payments are kept. If the app ever says it can't load your data, sign in to supabase.com, open the Bike Accounts project and click <span class="ui">Restore project</span>.</p>
+    <p>Stuck on a step? Take a screenshot and send it to Ryan.</p>
+  </footer>
+</div>
+
+<script>
+  document.getElementById('copy-sql').addEventListener('click', async (e) => {
+    const btn = e.currentTarget
+    const text = document.getElementById('sql').textContent
+    try {
+      await navigator.clipboard.writeText(text)
+      btn.textContent = 'Copied'
+    } catch {
+      const range = document.createRange()
+      range.selectNodeContents(document.getElementById('sql'))
+      const sel = getSelection()
+      sel.removeAllRanges()
+      sel.addRange(range)
+      btn.textContent = 'Selected: now copy it'
+    }
+    setTimeout(() => (btn.textContent = 'Copy code'), 2500)
+  })
+</script>

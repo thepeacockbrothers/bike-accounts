@@ -1,0 +1,10 @@
+Institution,Account,Date,Time,Type,Description,Reference,Money In,Money Out,Transaction Amount,Business Amount,Local Currency,Local Amount,Category,Notes,Original Description,Income Stream,SA103s Category
+Barclays Business,Business Gbp,12/09/2023,14:38:14,Bank Transfer,J Smith,,150.00,0.00,150.00,150.00,GBP,150.00,Income,,J SMITH BIKE SERVICE FT,The Mobile Bike Man,Your turnover
+Barclays Business,Business Gbp,13/09/2023,12:25:24,Purchase,Wiggle,,0.00,34.31,-34.31,-34.31,GBP,-34.31,Stock,,Wiggle Limited ON 12 SEP BDC,The Mobile Bike Man,Costs of goods bought for resale or goods used
+Barclays Business,Business Gbp,20/10/2023,12:25:24,Purchase,Wiggle,,0.00,12.00,-12.00,-12.00,GBP,-12.00,Stock,,Wiggle Limited ON 19 OCT BDC,The Mobile Bike Man,Costs of goods bought for resale or goods used
+Barclays Business,Business Gbp,13/09/2023,00:02:28,Bank Transfer,Lv Life,,0.00,32.93,-32.93,-32.93,GBP,-32.93,Insurance,,LV LIFE 00000000000X DDR,The Mobile Bike Man,"Rent, rates, power and insurance costs"
+Barclays Business,Business Gbp,14/09/2023,07:52:54,Bank Transfer,Own account,,0.00,100.00,-100.00,-100.00,GBP,-100.00,Your Wages,,123456 12345678 OPTIONAL FT,The Mobile Bike Man,
+Barclays Business,Business Gbp,15/09/2023,00:00:00,Bank Transfer,Own account,,200.00,0.00,200.00,200.00,GBP,200.00,Paying In,,123456 12345678 OPTIONAL FT,,
+Barclays Business,Business Gbp,07/04/2025,00:00:00,Bank Transfer,K Jones,,60.00,0.00,60.00,60.00,GBP,60.00,Paying In,,JONES K BIKE REPAIR FT,,
+Barclays Business,Business Gbp,07/04/2023,10:00:00,Purchase,Shell,,0.00,53.58,-53.58,-50.00,GBP,-53.58,Fuel & charging costs,,SHELL HIGH STREET ON 05 APR CLP,The Mobile Bike Man,"Car, van and travel expenses"
+Manual Adjustments,Manual Adjustments,16/01/2025,00:00:00,Bank Transfer,,,0.00,4.65,-4.65,-4.65,GBP,-4.65,Equipment,Paid cash for these bits,,The Mobile Bike Man,"Phone, fax, stationery and other office costs"
