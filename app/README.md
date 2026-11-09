@@ -27,11 +27,19 @@ Without Supabase settings it runs in "this device only" mode, which is fine for 
    "Allow new users to sign up" (Authentication → Sign In / Providers) so nobody else can make an account.
 4. Copy `.env.example` to `.env.local` and fill in the project URL and anon/publishable key.
 
-## Put it on his phone
+## Publishing changes
 
-Deploy the `dist/` folder from `npm run build` to any static host (Netlify, Vercel, Cloudflare Pages),
-setting the two `VITE_SUPABASE_*` variables there. Open the URL on his phone →
-Share → **Add to Home Screen**. It then opens like a normal app.
+The app is live at https://accounts.themobilebikeman.co.uk (GitHub Pages, serving the `gh-pages` branch).
+To publish a change, run from the `app` folder:
+
+```bash
+./deploy.sh
+```
+
+It runs the tests, builds with the Supabase settings in `.env.local`, and pushes the build to `gh-pages`.
+Your dad gets the new version next time he opens the app.
+
+On his phone: open the link in Safari → Share → **Add to Home Screen**.
 
 ## Claude suggestions (optional)
 
